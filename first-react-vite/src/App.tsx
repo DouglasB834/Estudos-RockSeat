@@ -16,15 +16,18 @@ interface Content {
   content: string;
 }
 
-export interface IPost {
+export interface IPostType {
   id?: number;
   author: Author;
   content: Content[];
   publishedAt: Date;
 }
+export interface IPost {
+  post: IPostType;
+}
 
 function App() {
-  const post: IPost[] = [
+  const posts: IPostType[] = [
     {
       id: 1,
       author: {
@@ -96,13 +99,8 @@ function App() {
         <Sidebar />
 
         <main>
-          {post.map((post: IPost) => (
-            <Post
-              key={post.id}
-              author={post.author}
-              content={post.content}
-              publishedAt={post.publishedAt}
-            />
+          {posts.map((post) => (
+            <Post key={post.id} post={post} />
           ))}
         </main>
       </div>

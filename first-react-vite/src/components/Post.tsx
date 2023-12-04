@@ -6,7 +6,7 @@ import styles from "./Post.module.css";
 import { format, formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
-export const Post = ({ author, content, publishedAt }: IPost) => {
+export const Post = ({ post }: IPost) => {
   const [coments, setComents] = useState(["oiii"]);
   const [newComentText, setNewComentText] = useState("");
 
@@ -18,11 +18,11 @@ export const Post = ({ author, content, publishedAt }: IPost) => {
     setComents(ComentesDelete);
   };
 
-  const timeTitle = format(publishedAt, "d 'de' LLLL  'ás' HH:mm'h'", {
+  const timeTitle = format(post.publishedAt, "d 'de' LLLL  'ás' HH:mm'h'", {
     locale: ptBR,
   });
 
-  const timeDistanceToNow = formatDistanceToNow(publishedAt, {
+  const timeDistanceToNow = formatDistanceToNow(post.publishedAt, {
     locale: ptBR,
     addSuffix: true,
   });
@@ -54,21 +54,21 @@ export const Post = ({ author, content, publishedAt }: IPost) => {
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar src={author.avatarUrl} />
+          <Avatar src={post.author.avatarUrl} />
 
           <div className={styles.infoAuth}>
-            <strong>{author.name}</strong>
-            <p>{author.role} </p>
+            <strong>{post.author.name}</strong>
+            <p>{post.author.role} </p>
           </div>
         </div>
-        <time title={timeTitle} dateTime={publishedAt.toISOString()}>
+        <time title={timeTitle} dateTime={post.publishedAt.toISOString()}>
           {timeDistanceToNow}
         </time>
       </header>
       {/* conteudo do post  */}
 
       <div className={styles.content}>
-        {content.map((line) => (
+        {post.content.map((line) => (
           <div key={line.content}>
             {line.title}
             {line.type === "paragraph" ? (
