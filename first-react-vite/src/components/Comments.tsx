@@ -20,7 +20,11 @@ export const CommentList = ({ content, onDeleteComent }: ICommentProps) => {
 
   return (
     <div className={styles.comments}>
-      <Avatar src="https://github.com/DouglasB834.png" isBorder={true} />
+      <Avatar
+        src="https://github.com/DouglasB834.png"
+        isBorder={true}
+        alt={"image user "}
+      />
       <div className={styles.commentsBox}>
         <header>
           <div className={styles.authorTime}>
